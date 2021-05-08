@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/static/css/main.ec9c5ef2.chunk.css",
-    "main.js": "/static/js/main.f0124b50.chunk.js",
-    "main.js.map": "/static/js/main.f0124b50.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.a9e98e4e.js",
-    "runtime-main.js.map": "/static/js/runtime-main.a9e98e4e.js.map",
-    "static/js/2.e1a81eec.chunk.js": "/static/js/2.e1a81eec.chunk.js",
-    "static/js/2.e1a81eec.chunk.js.map": "/static/js/2.e1a81eec.chunk.js.map",
-    "index.html": "/index.html",
-    "static/css/main.ec9c5ef2.chunk.css.map": "/static/css/main.ec9c5ef2.chunk.css.map",
-    "static/js/2.e1a81eec.chunk.js.LICENSE.txt": "/static/js/2.e1a81eec.chunk.js.LICENSE.txt",
-    "static/media/index.css": "/static/media/blackheart.4d79e05b.svg",
-    "static/media/like.df0c9655.svg": "/static/media/like.df0c9655.svg",
-    "static/media/logo.bbe2a6ea.svg": "/static/media/logo.bbe2a6ea.svg"
+    "main.css": "/koshmar1319/mesto-react/static/css/main.5c373812.chunk.css",
+    "main.js": "/koshmar1319/mesto-react/static/js/main.8a218c7d.chunk.js",
+    "main.js.map": "/koshmar1319/mesto-react/static/js/main.8a218c7d.chunk.js.map",
+    "runtime-main.js": "/koshmar1319/mesto-react/static/js/runtime-main.6aa1721e.js",
+    "runtime-main.js.map": "/koshmar1319/mesto-react/static/js/runtime-main.6aa1721e.js.map",
+    "static/js/2.10f7b1a4.chunk.js": "/koshmar1319/mesto-react/static/js/2.10f7b1a4.chunk.js",
+    "static/js/2.10f7b1a4.chunk.js.map": "/koshmar1319/mesto-react/static/js/2.10f7b1a4.chunk.js.map",
+    "index.html": "/koshmar1319/mesto-react/index.html",
+    "static/css/main.5c373812.chunk.css.map": "/koshmar1319/mesto-react/static/css/main.5c373812.chunk.css.map",
+    "static/js/2.10f7b1a4.chunk.js.LICENSE.txt": "/koshmar1319/mesto-react/static/js/2.10f7b1a4.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/koshmar1319/mesto-react/static/media/blackheart.4d79e05b.svg",
+    "static/media/like.df0c9655.svg": "/koshmar1319/mesto-react/static/media/like.df0c9655.svg",
+    "static/media/logo.bbe2a6ea.svg": "/koshmar1319/mesto-react/static/media/logo.bbe2a6ea.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.a9e98e4e.js",
-    "static/js/2.e1a81eec.chunk.js",
-    "static/css/main.ec9c5ef2.chunk.css",
-    "static/js/main.f0124b50.chunk.js"
+    "static/js/runtime-main.6aa1721e.js",
+    "static/js/2.10f7b1a4.chunk.js",
+    "static/css/main.5c373812.chunk.css",
+    "static/js/main.8a218c7d.chunk.js"
   ]
 }
