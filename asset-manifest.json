@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/koshmar1319/mesto-reactstatic/css/main.78046990.chunk.css",
+    "main.js": "/koshmar1319/mesto-reactstatic/js/main.f0124b50.chunk.js",
+    "main.js.map": "/koshmar1319/mesto-reactstatic/js/main.f0124b50.chunk.js.map",
+    "runtime-main.js": "/koshmar1319/mesto-reactstatic/js/runtime-main.7e927d6c.js",
+    "runtime-main.js.map": "/koshmar1319/mesto-reactstatic/js/runtime-main.7e927d6c.js.map",
+    "static/js/2.e1a81eec.chunk.js": "/koshmar1319/mesto-reactstatic/js/2.e1a81eec.chunk.js",
+    "static/js/2.e1a81eec.chunk.js.map": "/koshmar1319/mesto-reactstatic/js/2.e1a81eec.chunk.js.map",
+    "index.html": "/koshmar1319/mesto-reactindex.html",
+    "static/css/main.78046990.chunk.css.map": "/koshmar1319/mesto-reactstatic/css/main.78046990.chunk.css.map",
+    "static/js/2.e1a81eec.chunk.js.LICENSE.txt": "/koshmar1319/mesto-reactstatic/js/2.e1a81eec.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/koshmar1319/mesto-reactstatic/media/blackheart.4d79e05b.svg",
+    "static/media/like.df0c9655.svg": "/koshmar1319/mesto-reactstatic/media/like.df0c9655.svg",
+    "static/media/logo.bbe2a6ea.svg": "/koshmar1319/mesto-reactstatic/media/logo.bbe2a6ea.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7e927d6c.js",
+    "static/js/2.e1a81eec.chunk.js",
+    "static/css/main.78046990.chunk.css",
+    "static/js/main.f0124b50.chunk.js"
+  ]
+}
