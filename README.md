@@ -6,4 +6,4 @@
 
 Открытие/закрытие попапов и добавление карточки реализовано с помощью JavaScript/React
 
-https://koshmar1319.github.io/mesto-react/
+[Ссылка на сайт](https://koshmar1319.github.io/mesto-react/)
