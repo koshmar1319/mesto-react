@@ -5,7 +5,7 @@ function ImagePopup({ card, onClose }) {
     <div className={`popup-image popup ${card.link ? "popup_opened" : ""}`}>
       <div className="popup-image__block">
         <button className="popup__close" type="button" onClick={onClose}>&times;</button>
-        <img src={`${card.link}`} alt="" className="popup-image__photo" />
+        <img src={card.link} alt="" className="popup-image__photo" />
         <h2 className="popup-image__descr">{card.name}</h2>
       </div>
     </div>

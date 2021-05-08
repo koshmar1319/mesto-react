@@ -2,8 +2,8 @@ import React from 'react';
 
 import editImagePath from '../images/edit.png';
 import plusImagePath from '../images/plus.png';
-import api from '../utils/Api.js';
-import Card from './Card.js';
+import api from '../utils/Api';
+import Card from './Card';
 
 function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
   const [userInfo, setUserInfo] = React.useState({ userName: "", userDescription: "", userAvatar: "" });
