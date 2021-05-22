@@ -1,3 +1,5 @@
+import React from 'react';
+
 const showErrorMessage = (res) => {
   if (res.ok) {
     return res.json();
