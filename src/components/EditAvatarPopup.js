@@ -1,8 +1,8 @@
-import React from 'react';
-import PopupWithForm from './PopupWithForm';
+import React from "react";
+import PopupWithForm from "./PopupWithForm";
 
 function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
-  const [link, setLink] = React.useState('');
+  const [link, setLink] = React.useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -14,7 +14,7 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
   }
 
   React.useEffect(() => {
-    setLink('');
+    setLink("");
   }, [isOpen]);
 
   return (
@@ -27,7 +27,8 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
       buttonText="Сохранить"
       isOpen={isOpen}
       onClose={onClose}
-      onSubmit={handleSubmit}>
+      onSubmit={handleSubmit}
+    >
       <div className="popup__area">
         <input
           className="popup-upd__input popup__input"
@@ -36,11 +37,15 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
           value={link}
           placeholder="Ссылка на аватар"
           required
-          onChange={handleChange} />
-        <span className="popup__input-error popup-upd__input-error" id="popup-upd-error"></span>
+          onChange={handleChange}
+        />
+        <span
+          className="popup__input-error popup-upd__input-error"
+          id="popup-upd-error"
+        ></span>
       </div>
     </PopupWithForm>
-  )
+  );
 }
 
 export default EditAvatarPopup;

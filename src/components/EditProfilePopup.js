@@ -1,10 +1,10 @@
-import React from 'react';
-import PopupWithForm from './PopupWithForm';
-import { CurrentUserContext } from '../contexts/CurrentUserContext';
+import React from "react";
+import PopupWithForm from "./PopupWithForm";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
-  const [name, setName] = React.useState('Name');
-  const [description, setDescription] = React.useState('About');
+  const [name, setName] = React.useState("Name");
+  const [description, setDescription] = React.useState("About");
 
   const currentUser = React.useContext(CurrentUserContext);
 
@@ -27,7 +27,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
     e.preventDefault();
     onUpdateUser({
       name,
-      about: description
+      about: description,
     });
   }
 
@@ -38,7 +38,8 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
       buttonText="Сохранить"
       isOpen={isOpen}
       onClose={onClose}
-      onSubmit={handleSubmit}>
+      onSubmit={handleSubmit}
+    >
       <div className="popup__area">
         <input
           className="popup__input popup__input_type_name"
@@ -49,7 +50,8 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
           maxLength="40"
           value={name}
           onChange={handleChangeName}
-          required />
+          required
+        />
         <span className="popup__input-error" id="popup-name-error"></span>
       </div>
       <div className="popup__area">
@@ -62,11 +64,12 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
           maxLength="200"
           value={description}
           onChange={handleChangeAbout}
-          required />
+          required
+        />
         <span className="popup__input-error" id="popup-job-error"></span>
       </div>
     </PopupWithForm>
-  )
+  );
 }
 
 export default EditProfilePopup;

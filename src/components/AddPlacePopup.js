@@ -1,9 +1,9 @@
-import React from 'react';
-import PopupWithForm from './PopupWithForm';
+import React from "react";
+import PopupWithForm from "./PopupWithForm";
 
 function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
-  const [name, setName] = React.useState('');
-  const [link, setLink] = React.useState('');
+  const [name, setName] = React.useState("");
+  const [link, setLink] = React.useState("");
 
   function handleAddPlaceSubmit(e) {
     e.preventDefault();
@@ -19,8 +19,8 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
   }
 
   React.useEffect(() => {
-    setName('');
-    setLink('');
+    setName("");
+    setLink("");
   }, [isOpen]);
 
   return (
@@ -30,7 +30,8 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
       buttonText="Создать"
       onSubmit={handleAddPlaceSubmit}
       isOpen={isOpen}
-      onClose={onClose}>
+      onClose={onClose}
+    >
       <div className="popup__area">
         <input
           className="popup__input popup__input_type_place"
@@ -42,7 +43,8 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
           value={name}
           onChange={handleChangeTitle}
           onClose={onClose}
-          required />
+          required
+        />
         <span className="popup__input-error" id="popup-place-error"></span>
       </div>
       <div className="popup__area">
@@ -54,11 +56,12 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
           value={link}
           onChange={handleChangeLink}
           onClose={onClose}
-          required />
+          required
+        />
         <span className="popup__input-error" id="popup-link-error"></span>
       </div>
     </PopupWithForm>
-  )
+  );
 }
 
 export default AddPlacePopup;
