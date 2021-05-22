@@ -1,27 +1,27 @@
 const showErrorMessage = (res) => {
-  if(res.ok){
+  if (res.ok) {
     return res.json();
   }
   return Promise.reject(`Ошибка ${res.status}`);
 }
 
-class Api{
-  constructor(options){
+class Api {
+  constructor(options) {
     this._token = options.token;
     this._groupID = options.groupID;
   }
 
-  getUserInfo(){
+  getUserInfo() {
     return fetch(`https://mesto.nomoreparties.co/v1/${this._groupID}/users/me`, {
       method: "GET",
       headers: {
         authorization: this._token
       }
     })
-    .then(showErrorMessage)
+      .then(showErrorMessage)
   }
 
-  sendUserInfo(data){
+  setUserInfo(data) {
     return fetch(`https://mesto.nomoreparties.co/v1/${this._groupID}/users/me`, {
       method: "PATCH",
       headers: {
@@ -33,20 +33,20 @@ class Api{
         about: data.about
       })
     })
-    .then(showErrorMessage)
+      .then(showErrorMessage)
   }
 
-  getInitialCards(){
+  getInitialCards() {
     return fetch(`https://mesto.nomoreparties.co/v1/${this._groupID}/cards`, {
       method: "GET",
       headers: {
         authorization: this._token
       }
     })
-    .then(showErrorMessage)
+      .then(showErrorMessage)
   }
 
-  addCard(cardData){
+  addCard(card) {
     return fetch(`https://mesto.nomoreparties.co/v1/${this._groupID}/cards`, {
       method: "POST",
       headers: {
@@ -54,51 +54,24 @@ class Api{
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        name: cardData.popupPlace,
-        link: cardData.popupLink
+        name: card.name,
+        link: card.link
       })
     })
-    .then(showErrorMessage)
+      .then(showErrorMessage)
   }
 
-  deleteCard(idCard){
-    return fetch(`https://mesto.nomoreparties.co/v1/${this._groupID}/cards/${idCard}`, {
+  deleteCard(card) {
+    return fetch(`https://mesto.nomoreparties.co/v1/${this._groupID}/cards/${card._id}`, {
       method: "DELETE",
       headers: {
         authorization: this._token
       }
     })
-    .then(showErrorMessage)
+      .then(showErrorMessage)
   }
 
-  addLike(idCard, handleLikeCard){
-    return fetch(`https://mesto.nomoreparties.co/v1/${this._groupID}/cards/likes/${idCard}`, {
-      method: "PUT",
-      headers: {
-        authorization: this._token
-      }
-    })
-    .then(showErrorMessage)
-    .then((res) => {
-      handleLikeCard(res)
-      return res
-    })
-  }
-
-  deleteLike(idCard, handleDisLikeCard){
-    return fetch(`https://mesto.nomoreparties.co/v1/${this._groupID}/cards/likes/${idCard}`, {
-      method: "DELETE",
-      headers: {
-        authorization: this._token
-      }
-    })
-    .then(showErrorMessage)
-    .then((res) => {
-      handleDisLikeCard(res)
-    })
-  }
-
-  updateAvatar(popupAvatar){
+  setUserAvatar(avatar) {
     return fetch(`https://mesto.nomoreparties.co/v1/${this._groupID}/users/me/avatar`, {
       method: "PATCH",
       headers: {
@@ -106,10 +79,20 @@ class Api{
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        avatar: popupAvatar
+        avatar: avatar
       })
     })
-    .then(showErrorMessage)
+      .then(showErrorMessage)
+  }
+
+  changeLikeCardStatus(card, likeCardStatus) {
+    return fetch(`https://mesto.nomoreparties.co/v1/${this._groupID}/cards/likes/${card._id}`, {
+      method: (likeCardStatus ? "PUT" : "DELETE"),
+      headers: {
+        authorization: this._token
+      }
+    })
+      .then(showErrorMessage)
   }
 }
 
