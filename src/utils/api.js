@@ -1,12 +1,3 @@
-import React from 'react';
-
-const showErrorMessage = (res) => {
-  if (res.ok) {
-    return res.json();
-  }
-  return Promise.reject(`Ошибка ${res.status}`);
-}
-
 class Api {
   constructor(options) {
     this._token = options.token;
@@ -20,7 +11,7 @@ class Api {
         authorization: this._token
       }
     })
-      .then(showErrorMessage)
+      .then(this._showErrorMessage)
   }
 
   setUserInfo(data) {
@@ -35,7 +26,7 @@ class Api {
         about: data.about
       })
     })
-      .then(showErrorMessage)
+      .then(this._showErrorMessage)
   }
 
   getInitialCards() {
@@ -45,7 +36,7 @@ class Api {
         authorization: this._token
       }
     })
-      .then(showErrorMessage)
+      .then(this._showErrorMessage)
   }
 
   addCard(card) {
@@ -60,7 +51,7 @@ class Api {
         link: card.link
       })
     })
-      .then(showErrorMessage)
+      .then(this._showErrorMessage)
   }
 
   deleteCard(card) {
@@ -70,7 +61,7 @@ class Api {
         authorization: this._token
       }
     })
-      .then(showErrorMessage)
+      .then(this._showErrorMessage)
   }
 
   setUserAvatar(avatar) {
@@ -84,7 +75,7 @@ class Api {
         avatar: avatar
       })
     })
-      .then(showErrorMessage)
+      .then(this._showErrorMessage)
   }
 
   changeLikeCardStatus(card, likeCardStatus) {
@@ -94,7 +85,14 @@ class Api {
         authorization: this._token
       }
     })
-      .then(showErrorMessage)
+      .then(this._showErrorMessage)
+  }
+
+  _showErrorMessage = (res) => {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка ${res.status}`);
   }
 }
 
