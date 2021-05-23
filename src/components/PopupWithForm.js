@@ -11,6 +11,7 @@ function PopupWithForm({
   titleName,
   btnName,
   onSubmit,
+  buttonState,
 }) {
   return (
     <div className={`popup ${isOpen ? "popup_opened" : ""}`}>
@@ -29,8 +30,11 @@ function PopupWithForm({
         >
           {children}
           <button
-            className={`popup__btn ${btnName ? btnName : ""}`}
+            className={`popup__btn ${btnName ? btnName : ""} ${
+              !buttonState ? "popup__btn_inactive" : ""
+            }`}
             type="submit"
+            disabled={!buttonState ? true : ""}
           >
             {buttonText}
           </button>

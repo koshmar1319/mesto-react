@@ -6,6 +6,12 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, buttonText }) {
   const [name, setName] = React.useState("Name");
   const [description, setDescription] = React.useState("About");
 
+  const [nameInputValid, setNameInputValid] = React.useState(true);
+  const [aboutInputValid, setAboutInputValid] = React.useState(true);
+  const [nameErrorMessage, setNameErrorMessage] = React.useState("");
+  const [aboutErrorMessage, setAboutErrorMessage] = React.useState("");
+  const [buttonState, setButtonState] = React.useState(false);
+
   const currentUser = React.useContext(CurrentUserContext);
 
   React.useEffect(() => {
@@ -13,14 +19,18 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, buttonText }) {
       setName(currentUser.name);
       setDescription(currentUser.about);
     }
+    setNameInputValid(true);
+    setAboutInputValid(true);
   }, [currentUser, isOpen]);
 
   function handleChangeName(e) {
     setName(e.target.value);
+    checkNameInputValidity(e.target);
   }
 
   function handleChangeAbout(e) {
     setDescription(e.target.value);
+    checkAboutInputValidity(e.target);
   }
 
   function handleSubmit(e) {
@@ -31,6 +41,32 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, buttonText }) {
     });
   }
 
+  function checkNameInputValidity(inputElement) {
+    if (!inputElement.validity.valid) {
+      setNameInputValid(false);
+      setNameErrorMessage(inputElement.validationMessage);
+    } else {
+      setNameInputValid(true);
+    }
+  }
+
+  function checkAboutInputValidity(inputElement) {
+    if (!inputElement.validity.valid) {
+      setAboutInputValid(false);
+      setAboutErrorMessage(inputElement.validationMessage);
+    } else {
+      setAboutInputValid(true);
+    }
+  }
+
+  React.useEffect(() => {
+    if (nameInputValid && aboutInputValid) {
+      setButtonState(true);
+    } else {
+      setButtonState(false);
+    }
+  }, [nameInputValid, aboutInputValid]);
+
   return (
     <PopupWithForm
       title="Редактировать профиль"
@@ -39,10 +75,11 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, buttonText }) {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      buttonState={buttonState}
     >
       <div className="popup__area">
         <input
-          className="popup__input popup__input_type_name"
+          className={`popup__input popup__input_type_name`}
           type="text"
           name="name"
           placeholder="Имя"
@@ -52,7 +89,13 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, buttonText }) {
           onChange={handleChangeName}
           required
         />
-        <span className="popup__input-error" id="popup-name-error"></span>
+        <span
+          className={`popup__input-error ${
+            !nameInputValid ? "popup__input-error_active" : ""
+          }`}
+        >
+          {nameErrorMessage}
+        </span>
       </div>
       <div className="popup__area">
         <input
@@ -66,7 +109,13 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser, buttonText }) {
           onChange={handleChangeAbout}
           required
         />
-        <span className="popup__input-error" id="popup-job-error"></span>
+        <span
+          className={`popup__input-error ${
+            !aboutInputValid ? "popup__input-error_active" : ""
+          }`}
+        >
+          {aboutErrorMessage}
+        </span>
       </div>
     </PopupWithForm>
   );

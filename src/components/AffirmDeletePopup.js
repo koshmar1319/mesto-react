@@ -1,7 +1,13 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
 
-function AffirmDeletePopup({isOpen, onClose, card, onSubmitDelete, buttonText}) {
+function AffirmDeletePopup({
+  isOpen,
+  onClose,
+  card,
+  onSubmitDelete,
+  buttonText,
+}) {
   function handleSubmit(e) {
     e.preventDefault();
     onSubmitDelete(card);
@@ -18,8 +24,9 @@ function AffirmDeletePopup({isOpen, onClose, card, onSubmitDelete, buttonText}) 
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      buttonState={true}
     />
-  )
+  );
 }
 
 export default AffirmDeletePopup;

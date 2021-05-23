@@ -5,6 +5,15 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace, buttonText }) {
   const [name, setName] = React.useState("");
   const [link, setLink] = React.useState("");
 
+  const [nameInputValid, setNameInputValid] = React.useState(true);
+  const [linkInputValid, setLinkInputValid] = React.useState(true);
+  const [nameErrorMessage, setNameErrorMessage] = React.useState("");
+  const [linkErrorMessage, setLinkErrorMessage] = React.useState("");
+  const [buttonState, setButtonState] = React.useState(false);
+
+  const [nameOriginalState, setNameOriginalState] = React.useState(true);
+  const [linkOriginalState, setLinkOriginalState] = React.useState(true);
+
   function handleAddPlaceSubmit(e) {
     e.preventDefault();
     onAddPlace({ name, link });
@@ -12,16 +21,58 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace, buttonText }) {
 
   function handleChangeTitle(e) {
     setName(e.target.value);
+    checkNameInputValidity(e.target);
   }
 
   function handleChangeLink(e) {
     setLink(e.target.value);
+    checkLinkInputValidity(e.target);
   }
 
   React.useEffect(() => {
     setName("");
     setLink("");
+    setNameInputValid(true);
+    setLinkInputValid(true);
+    setButtonState(false);
+    setNameOriginalState(true);
+    setLinkOriginalState(true);
   }, [isOpen]);
+
+  React.useEffect(() => {
+    if (
+      nameInputValid &&
+      linkInputValid &&
+      !nameOriginalState &&
+      !linkOriginalState
+    ) {
+      setButtonState(true);
+    } else {
+      setButtonState(false);
+    }
+  }, [nameInputValid, linkInputValid, nameOriginalState, linkOriginalState]);
+
+  function checkNameInputValidity(inputElement) {
+    if (!inputElement.validity.valid) {
+      setNameOriginalState(false);
+      setNameInputValid(false);
+      setNameErrorMessage(inputElement.validationMessage);
+    } else {
+      setNameOriginalState(false);
+      setNameInputValid(true);
+    }
+  }
+
+  function checkLinkInputValidity(inputElement) {
+    if (!inputElement.validity.valid) {
+      setLinkOriginalState(false);
+      setLinkInputValid(false);
+      setLinkErrorMessage(inputElement.validationMessage);
+    } else {
+      setLinkOriginalState(false);
+      setLinkInputValid(true);
+    }
+  }
 
   return (
     <PopupWithForm
@@ -31,6 +82,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace, buttonText }) {
       onSubmit={handleAddPlaceSubmit}
       isOpen={isOpen}
       onClose={onClose}
+      buttonState={buttonState}
     >
       <div className="popup__area">
         <input
@@ -45,7 +97,13 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace, buttonText }) {
           onClose={onClose}
           required
         />
-        <span className="popup__input-error" id="popup-place-error"></span>
+        <span
+          className={`popup__input-error ${
+            !nameInputValid ? "popup__input-error_active" : ""
+          }`}
+        >
+          {nameErrorMessage}
+        </span>
       </div>
       <div className="popup__area">
         <input
@@ -58,7 +116,13 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace, buttonText }) {
           onClose={onClose}
           required
         />
-        <span className="popup__input-error" id="popup-link-error"></span>
+        <span
+          className={`popup__input-error ${
+            !linkInputValid ? "popup__input-error_active" : ""
+          }`}
+        >
+          {linkErrorMessage}
+        </span>
       </div>
     </PopupWithForm>
   );
