@@ -3,7 +3,6 @@ import "../index.css";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
-import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 import api from "../utils/api.js";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
@@ -129,6 +128,26 @@ function App() {
     setAffirmDeletePopupOpen(false);
     setSelectedCard({});
   }
+
+  React.useEffect(() => {
+    function handleEscClose(evt) {
+      if(evt.key === 'Escape') {
+        closeAllPopups();
+      }
+    }
+    document.addEventListener('keydown', handleEscClose);
+    return () => document.removeEventListener('keydown', handleEscClose);
+  }, []);
+
+  React.useEffect(() => {
+    function closeOutsidePopup(evt) {
+      if(evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close')){
+        closeAllPopups();
+      }
+    }
+    document.addEventListener('click', closeOutsidePopup);
+    return () => document.removeEventListener('click', closeOutsidePopup);
+  }, []);
 
   return (
     <div className="container">
