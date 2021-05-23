@@ -1,7 +1,7 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
 
-function AffirmDeletePopup({isOpen, onClose, card, onSubmitDelete}) {
+function AffirmDeletePopup({isOpen, onClose, card, onSubmitDelete, buttonText}) {
   function handleSubmit(e) {
     e.preventDefault();
     onSubmitDelete(card);
@@ -14,7 +14,7 @@ function AffirmDeletePopup({isOpen, onClose, card, onSubmitDelete}) {
       btnName="popup__btn_yes"
       title="Вы уверены?"
       name="delete"
-      buttonText="Да"
+      buttonText={buttonText}
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}

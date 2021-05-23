@@ -23,6 +23,12 @@ function App() {
   const [isAffirmDeletePopupOpen, setAffirmDeletePopupOpen] = React.useState(false);
   const [cardToDelete, setCardToDelete] = React.useState({});
 
+  const [loadTextEditProfilePopup, setLoadTextEditProfilePopup] = React.useState('Сохранить');
+  const [loadTextEditAvatarPopup, setLoadTextEditAvatarPopup] = React.useState('Сохранить');
+  const [loadTextAddPlacePopup, setLoadTextAddPlacePopup] = React.useState('Создать');
+  const [loadTextAffirmDeletePopup, setLoadTextAffirmDeletePopup] = React.useState('Да');
+  
+
   React.useEffect(() => {
     Promise.all([api.getUserInfo(), api.getInitialCards()])
       .then(([userData, cards]) => {
@@ -36,14 +42,17 @@ function App() {
 
   function handleEditProfileClick() {
     setEditProfilePopupOpen(true);
+    setLoadTextEditProfilePopup('Сохранить');
   }
 
   function handleAddPlaceClick() {
     setAddPlacePopupOpen(true);
+    setLoadTextAddPlacePopup('Создать');
   }
 
   function handleEditAvatarClick() {
     setEditAvatarPopupOpen(true);
+    setLoadTextEditAvatarPopup('Сохранить');
   }
 
   function handleCardClick(card) {
@@ -51,6 +60,7 @@ function App() {
   }
 
   function handleCardLike(card) {
+    //loading
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
     api
       .changeLikeCardStatus(card, !isLiked)
@@ -65,6 +75,7 @@ function App() {
   }
 
   function handleCardDelete(card) {
+    setLoadTextAffirmDeletePopup('Удаление . . .');
     api
       .deleteCard(card)
       .then(() => {
@@ -77,11 +88,13 @@ function App() {
   }
 
   function affirmCardDelete(card) {
+    setLoadTextAffirmDeletePopup('Да');
     setCardToDelete(card);
     setAffirmDeletePopupOpen(true);
   }
 
   function handleUpdateUser(data) {
+    setLoadTextEditProfilePopup('Сохранение . . .');
     api
       .setUserInfo(data)
       .then((newCard) => {
@@ -98,6 +111,7 @@ function App() {
   }
 
   function handleUpdateAvatar({ avatar }) {
+    setLoadTextEditAvatarPopup('Сохранение . . .');
     api
       .setUserAvatar(avatar)
       .then((updateUser) => {
@@ -110,6 +124,7 @@ function App() {
   }
 
   function handleAddCard(card) {
+    setLoadTextAddPlacePopup('Создание . . .');
     api
       .addCard(card)
       .then((newCard) => {
@@ -168,18 +183,21 @@ function App() {
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
           onUpdateUser={handleUpdateUser}
+          buttonText={loadTextEditProfilePopup}
         />
 
         <AddPlacePopup
           isOpen={isAddPlacePopupOpen}
           onClose={closeAllPopups}
           onAddPlace={handleAddCard}
+          buttonText={loadTextAddPlacePopup}
         />
 
         <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
           onUpdateAvatar={handleUpdateAvatar}
+          buttonText={loadTextEditAvatarPopup}
         />
 
         <AffirmDeletePopup
@@ -187,6 +205,7 @@ function App() {
           onClose={closeAllPopups}
           onSubmitDelete={handleCardDelete}
           card={cardToDelete}
+          buttonText={loadTextAffirmDeletePopup}
         />
 
         <ImagePopup card={selectedCard} onClose={closeAllPopups} />
